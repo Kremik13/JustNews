@@ -7,7 +7,9 @@ interface BaseContract {
     interface Presenter<T: BaseContract.View> {
         var view: T?
 
-        fun bind(view: T)
+        fun bind(view: T) {
+            this.view = view
+        }
 
         fun unbind() {
             view = null
