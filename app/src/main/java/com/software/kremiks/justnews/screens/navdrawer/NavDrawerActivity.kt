@@ -1,18 +1,20 @@
-package com.software.kremiks.justnews.ui
+package com.software.kremiks.justnews.screens.navdrawer
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.software.kremiks.justnews.R
+import com.software.kremiks.justnews.extensions.addFragment
+import com.software.kremiks.justnews.screens.top.TopFragment
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class NavDrawerActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        addFragment(TopFragment(), R.id.fragmentContainer)
     }
 
     override fun onBackPressed() {
@@ -41,40 +44,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.menu_refresh -> true
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
+            R.id.nav_top -> {
             }
-            R.id.nav_gallery -> {
+            R.id.nav_favorite -> {
 
             }
-            R.id.nav_slideshow -> {
+            R.id.nav_general -> {
 
             }
-            R.id.nav_manage -> {
+            R.id.nav_tech -> {
 
             }
-            R.id.nav_share -> {
+            R.id.nav_business -> {
 
             }
-            R.id.nav_send -> {
+            R.id.nav_settings -> {
 
             }
         }
