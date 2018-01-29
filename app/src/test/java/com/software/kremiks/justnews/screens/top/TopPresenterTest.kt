@@ -1,20 +1,32 @@
 package com.software.kremiks.justnews.screens.top
 
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
+import com.software.kremiks.justnews.ImmediateSchedulerExtension
+import com.software.kremiks.justnews.R
+import com.software.kremiks.justnews.data.Article
+import com.software.kremiks.justnews.data.ArticlesResponse
 import com.software.kremiks.justnews.data.remote.NewsApi
+import io.reactivex.Single
 import org.junit.jupiter.api.AfterEach
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
+@ExtendWith(ImmediateSchedulerExtension::class)
 internal class TopPresenterTest {
 
     private val model: NewsApi = mock()
-
+    private val view: TopContract.View = mock()
+    private val article: Article = mock()
+    private val internetError = R.string.cannot_connect_internet
+    private val articlesResponse: ArticlesResponse = ArticlesResponse(listOf(article, article, article))
+    private val noArticles = ArticlesResponse(emptyList())
     private val presenter by lazy {
-        TopPresenter(model)
+        TopPresenter(view, model)
     }
 
     @BeforeEach
@@ -28,8 +40,38 @@ internal class TopPresenterTest {
     }
 
     @Test
-    @DisplayName("")
-    fun onRefresh() {
-        whenever(model)
+    @DisplayName("Given Single with articles" +
+            " When onRefresh called" +
+            " Then call view.setArticles")
+    fun onRefreshSuccessArticlesList() {
+        whenever(model.getTopNews()).thenReturn(Single.just(articlesResponse))
+
+        presenter.onRefresh()
+
+        verify(view).setArticles(articlesResponse.articles)
+    }
+
+    @Test
+    @DisplayName("Given Single with empty list" +
+            " When onRefresh called" +
+            " Then call view.showNoArticles")
+    fun onRefreshSuccessEmptyList() {
+        whenever(model.getTopNews()).thenReturn(Single.just(noArticles))
+
+        presenter.onRefresh()
+
+        verify(view).showNoArticles()
+    }
+
+    @Test
+    @DisplayName("Given Single with Throwable" +
+            " When onRefresh called" +
+            " Then call view.showToast")
+    fun onRefreshErrorHttpError() {
+        whenever(model.getTopNews()).thenReturn(Single.error(Throwable()))
+
+        presenter.onRefresh()
+
+        verify(view).showToast(internetError)
     }
 }

@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/feedSRL"
+    android:id="@+id/feedFL"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.software.kremiks.justnews.screens.navdrawer.NavDrawerActivity"
-    tools:showIn="@layout/app_bar_main">
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/noArticlesLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:contentDescription="@string/sad_face_icon"
+            android:src="@drawable/ic_sentiment_dissatisfied"
+            android:tint="#AAA" />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/there_are_not_any_news"
+            android:textAppearance="@android:style/TextAppearance.Material.Title"
+            android:textColor="#AAA" />
+    </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/feedSRL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.software.kremiks.justnews.screens.navdrawer.NavDrawerActivity"
+        tools:showIn="@layout/app_bar_main">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/feedRV"
@@ -19,5 +46,4 @@
             android:layout_height="match_parent" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
-</android.support.v4.widget.SwipeRefreshLayout>
+</FrameLayout>

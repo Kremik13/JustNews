@@ -16,4 +16,8 @@
     <string name="general">General</string>
     <string name="tech">Tech</string>
     <string name="business">Business</string>
+    <string name="connection_timeout">Connection timed out.</string>
+    <string name="cannot_connect_internet">Cannot connect to internet.</string>
+    <string name="there_are_not_any_news">There are not any news.</string>
+    <string name="sad_face_icon">Sad face icon</string>
 </resources>

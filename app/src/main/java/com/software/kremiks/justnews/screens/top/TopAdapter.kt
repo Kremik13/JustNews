@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_news_feed.view.*
 class TopAdapter(
         private val onReadMoreClick: (() -> Unit),
         private val onFavouriteClicked: (() -> Unit),
-        private val articles: List<Article> = emptyList()
+        var articles: List<Article> = emptyList()
         ) : RecyclerView.Adapter<TopAdapter.ViewHolder>() {
 
 
