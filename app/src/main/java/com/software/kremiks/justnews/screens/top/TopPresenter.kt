@@ -13,9 +13,11 @@ class TopPresenter @Inject constructor(private val view: TopContract.View, priva
     private val disposables = CompositeDisposable()
 
     override fun onCreate() {
-        onRefresh()
     }
 
+    override fun onStart() {
+        onRefresh()
+    }
     override fun onDestroy() {
         disposables.dispose()
     }

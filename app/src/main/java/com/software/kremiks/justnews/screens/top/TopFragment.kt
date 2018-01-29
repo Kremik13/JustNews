@@ -35,7 +35,6 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
             adapter = this@TopFragment.adapter
             this.adapter = adapter
         }
-        presenter.onCreate()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {

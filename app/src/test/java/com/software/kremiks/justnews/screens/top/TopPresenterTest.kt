@@ -8,6 +8,7 @@ import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.Article
 import com.software.kremiks.justnews.data.ArticlesResponse
 import com.software.kremiks.justnews.data.remote.NewsApi
+import com.software.kremiks.justnews.screens.BaseFragment
 import io.reactivex.Single
 import org.junit.jupiter.api.AfterEach
 
