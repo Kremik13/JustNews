@@ -17,6 +17,8 @@ interface TopContract {
         fun showShowRefreshing(isShown: Boolean)
 
         fun editFavorites(sourceName: String)
+
+        fun openBrowser(url: String)
     }
 
     interface Presenter : BaseContract.Presenter {

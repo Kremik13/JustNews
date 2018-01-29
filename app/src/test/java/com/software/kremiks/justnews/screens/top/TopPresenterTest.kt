@@ -23,6 +23,7 @@ internal class TopPresenterTest {
 
     private val model: NewsApi = mock()
     private val view: TopContract.View = mock()
+    private val text = "text"
     private val article: Article = mock()
     private val internetError = R.string.cannot_connect_internet
     private val articlesResponse: ArticlesResponse = ArticlesResponse(listOf(article, article, article))
@@ -78,11 +79,24 @@ internal class TopPresenterTest {
     }
 
     @Test
+    @DisplayName("Given image url /text/" +
+            " When onFavoriteClick called" +
+            " Then call view.editFavorites")
     fun onFavoriteClick() {
-        val sourceName = "Source Name"
 
-        presenter.onFavoriteClick(sourceName)
+        presenter.onFavoriteClick(text)
 
-        verify(view).editFavorites(sourceName)
+        verify(view).editFavorites(text)
+    }
+
+    @Test
+    @DisplayName("Given article url /text/" +
+            " When onReadMoreClick called" +
+            " Then call view.openBrowser")
+    fun onReadMoreClick() {
+
+        presenter.onReadMoreClick(text)
+
+        verify(view).openBrowser(text)
     }
 }

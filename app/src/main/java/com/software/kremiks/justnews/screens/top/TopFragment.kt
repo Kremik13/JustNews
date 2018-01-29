@@ -1,5 +1,7 @@
 package com.software.kremiks.justnews.screens.top
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -82,5 +84,9 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
             prefs.favorites = prefs.favorites.plus(sourceName)
         }
         adapter.notifyDataSetChanged()
+    }
+
+    override fun openBrowser(url: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
 }

@@ -51,7 +51,7 @@ class TopPresenter @Inject constructor(
     }
 
     override fun onReadMoreClick(url: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view.openBrowser(url)
     }
 
     override fun onFavoriteClick(sourceId: String?) {
