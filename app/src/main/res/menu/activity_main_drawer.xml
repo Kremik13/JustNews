@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_top"
             android:icon="@drawable/ic_top"
@@ -12,22 +12,6 @@
             android:id="@+id/nav_favorite"
             android:icon="@drawable/ic_favorite"
             android:title="@string/favorite" />
-        <item
-            android:id="@+id/nav_general"
-            android:icon="@drawable/ic_menu_general"
-            android:title="@string/general" />
-        <item
-            android:id="@+id/nav_tech"
-            android:icon="@drawable/ic_menu_tech"
-            android:title="@string/tech" />
-        <item
-            android:id="@+id/nav_business"
-            android:icon="@drawable/ic_menu_business"
-            android:title="@string/business" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_settings"
-            android:title="@string/settings" />
     </group>
 
 </menu>

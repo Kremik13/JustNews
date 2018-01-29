@@ -12,6 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+
+//TODO(""Find another news API, because newsAPI has problems with Multiple Query Parameters of Same Name)
 interface NewsApi {
 
     @GET("top-headlines")
@@ -22,7 +24,7 @@ interface NewsApi {
 
     @GET("top-headlines")
     fun getFavoriteNews(
-            @Query("country") vararg country: String
+            @Query("sources") sources: List<String>
     ): Single<ArticlesResponse>
 
     companion object Factory {

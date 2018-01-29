@@ -1,4 +1,4 @@
-package com.software.kremiks.justnews.screens.top
+package com.software.kremiks.justnews.screens.swiperefresh
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
@@ -7,19 +7,19 @@ import com.software.kremiks.justnews.ImmediateSchedulerExtension
 import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.Article
 import com.software.kremiks.justnews.data.ArticlesResponse
-import com.software.kremiks.justnews.data.local.Prefs
 import com.software.kremiks.justnews.data.remote.NewsApi
-import com.software.kremiks.justnews.screens.BaseFragment
+import com.software.kremiks.justnews.screens.top.TopContract
+import com.software.kremiks.justnews.screens.top.TopPresenter
 import io.reactivex.Single
 import org.junit.jupiter.api.AfterEach
-
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(ImmediateSchedulerExtension::class)
-internal class TopPresenterTest {
+internal class SwipeRefreshPresenterTest {
 
     private val model: NewsApi = mock()
     private val view: TopContract.View = mock()
@@ -28,6 +28,8 @@ internal class TopPresenterTest {
     private val internetError = R.string.cannot_connect_internet
     private val articlesResponse: ArticlesResponse = ArticlesResponse(listOf(article, article, article))
     private val noArticles = ArticlesResponse(emptyList())
+
+//    TODO("Find a way to mock presenter with real functions and params)
     private val presenter by lazy {
         TopPresenter(view, model)
     }
