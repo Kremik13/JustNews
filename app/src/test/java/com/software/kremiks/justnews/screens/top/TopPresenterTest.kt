@@ -7,6 +7,7 @@ import com.software.kremiks.justnews.ImmediateSchedulerExtension
 import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.Article
 import com.software.kremiks.justnews.data.ArticlesResponse
+import com.software.kremiks.justnews.data.local.Prefs
 import com.software.kremiks.justnews.data.remote.NewsApi
 import com.software.kremiks.justnews.screens.BaseFragment
 import io.reactivex.Single
@@ -74,5 +75,14 @@ internal class TopPresenterTest {
         presenter.onRefresh()
 
         verify(view).showToast(internetError)
+    }
+
+    @Test
+    fun onFavoriteClick() {
+        val sourceName = "Source Name"
+
+        presenter.onFavoriteClick(sourceName)
+
+        verify(view).editFavorites(sourceName)
     }
 }

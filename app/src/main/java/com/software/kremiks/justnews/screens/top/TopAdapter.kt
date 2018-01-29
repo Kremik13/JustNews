@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.Article
+import com.software.kremiks.justnews.data.local.Prefs
 import com.software.kremiks.justnews.extensions.inflate
 import kotlinx.android.synthetic.main.item_news_feed.view.*
 
 class TopAdapter(
+        private val prefs: Prefs,
         private val onReadMoreClick: ((String) -> Unit),
-        private val onFavouriteClicked: ((String) -> Unit),
+        private val onFavoriteClick: ((String) -> Unit),
         var articles: List<Article> = emptyList()
 ) : RecyclerView.Adapter<TopAdapter.ViewHolder>() {
 
@@ -32,9 +34,14 @@ class TopAdapter(
                     text = article.description
                     visibility = View.VISIBLE
                 }
+                if (prefs.favorites.contains(article.source.name)) {
+                    favouriteSourceBtn.setImageResource(R.drawable.ic_favorite)
+                } else {
+                    favouriteSourceBtn.setImageResource(R.drawable.ic_favorite_border)
+                }
 
                 readMoreBtn.setOnClickListener { onReadMoreClick.invoke(article.url) }
-                favouriteSourceBtn.setOnClickListener { onFavouriteClicked.invoke(article.source.name) }
+                favouriteSourceBtn.setOnClickListener { onFavoriteClick.invoke(article.source.name) }
             }
         }
     }

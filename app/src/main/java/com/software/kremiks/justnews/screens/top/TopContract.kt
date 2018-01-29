@@ -15,6 +15,8 @@ interface TopContract {
         fun showToast(@StringRes messageId: Int)
 
         fun showShowRefreshing(isShown: Boolean)
+
+        fun editFavorites(sourceName: String)
     }
 
     interface Presenter : BaseContract.Presenter {
@@ -23,7 +25,7 @@ interface TopContract {
 
         fun onReadMoreClick(url: String)
 
-        fun onFavouriteClicked(sourceName: String)
+        fun onFavoriteClick(sourceName: String)
 
         fun loadArticleImage(imageUrl: String?)
     }

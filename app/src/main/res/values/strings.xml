@@ -20,4 +20,5 @@
     <string name="cannot_connect_internet">Cannot connect to internet.</string>
     <string name="there_are_not_any_news">There are not any news.</string>
     <string name="sad_face_icon">Sad face icon</string>
+    <string name="favorite_added">Added to favorites!</string>
 </resources>

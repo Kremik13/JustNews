@@ -2,13 +2,17 @@ package com.software.kremiks.justnews.screens.top
 
 import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.ArticlesResponse
+import com.software.kremiks.justnews.data.local.Prefs
 import com.software.kremiks.justnews.data.remote.NewsApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class TopPresenter @Inject constructor(private val view: TopContract.View, private val model: NewsApi) : TopContract.Presenter {
+class TopPresenter @Inject constructor(
+        private val view: TopContract.View,
+        private val model: NewsApi
+) : TopContract.Presenter {
 
     private val disposables = CompositeDisposable()
 
@@ -51,8 +55,8 @@ class TopPresenter @Inject constructor(private val view: TopContract.View, priva
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onFavouriteClicked(sourceName: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onFavoriteClick(sourceName: String) {
+        view.editFavorites(sourceName)
     }
 
     override fun loadArticleImage(imageUrl: String?) {

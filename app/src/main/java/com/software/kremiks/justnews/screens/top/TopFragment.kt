@@ -1,9 +1,6 @@
 package com.software.kremiks.justnews.screens.top
 
-import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.content.res.AppCompatResources
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.Article
+import com.software.kremiks.justnews.data.local.Prefs
 import com.software.kremiks.justnews.screens.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_feed.*
@@ -21,9 +19,11 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
 
     @Inject
     override lateinit var presenter: TopContract.Presenter
+    @Inject
+    lateinit var prefs: Prefs
     override val contentViewId = R.layout.fragment_feed
     private val adapter: TopAdapter by lazy {
-        TopAdapter(presenter::onReadMoreClick, presenter::onFavouriteClicked)
+        TopAdapter(prefs, presenter::onReadMoreClick, presenter::onFavoriteClick)
     }
 
     override fun onCreated(savedInstanceState: Bundle?) {
@@ -68,5 +68,14 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
 
     override fun showToast(messageId: Int) {
         Toast.makeText(context, messageId, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun editFavorites(sourceName: String) {
+        if (prefs.favorites.contains(sourceName)) {
+            prefs.favorites = prefs.favorites.minus(sourceName)
+        } else {
+            prefs.favorites = prefs.favorites.plus(sourceName)
+        }
+        adapter.notifyDataSetChanged()
     }
 }
