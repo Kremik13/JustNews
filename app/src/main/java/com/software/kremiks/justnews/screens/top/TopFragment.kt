@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.content.res.AppCompatResources
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.software.kremiks.justnews.R
@@ -24,6 +27,7 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
     }
 
     override fun onCreated(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         AndroidSupportInjection.inject(this)
         feedSRL.setOnRefreshListener(presenter::onRefresh)
         feedRV.apply {
@@ -32,6 +36,21 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
             this.adapter = adapter
         }
         presenter.onCreate()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_refresh -> {
+                presenter.onRefresh()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun showShowRefreshing(isShown: Boolean) {
