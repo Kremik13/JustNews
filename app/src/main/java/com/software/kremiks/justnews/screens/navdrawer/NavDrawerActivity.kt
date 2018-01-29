@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.extensions.addFragment
+import com.software.kremiks.justnews.extensions.replaceFragment
 import com.software.kremiks.justnews.screens.top.TopFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,7 +26,7 @@ class NavDrawerActivity : DaggerAppCompatActivity(), NavigationView.OnNavigation
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
 
-        addFragment(TopFragment(), R.id.fragmentContainer)
+        replaceFragment(TopFragment(), R.id.fragmentContainer)
     }
 
     override fun onBackPressed() {

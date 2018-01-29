@@ -2,7 +2,6 @@ package com.software.kremiks.justnews.screens.top
 
 import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.ArticlesResponse
-import com.software.kremiks.justnews.data.local.Prefs
 import com.software.kremiks.justnews.data.remote.NewsApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -55,11 +54,9 @@ class TopPresenter @Inject constructor(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onFavoriteClick(sourceName: String) {
-        view.editFavorites(sourceName)
-    }
-
-    override fun loadArticleImage(imageUrl: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onFavoriteClick(sourceId: String?) {
+        sourceId?.let {
+            view.editFavorites(it)
+        }
     }
 }
