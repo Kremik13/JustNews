@@ -37,6 +37,11 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
         }
     }
 
+    override fun onStop() {
+        feedSRL.isRefreshing = false
+        super.onStop()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
         super.onCreateOptionsMenu(menu, inflater)

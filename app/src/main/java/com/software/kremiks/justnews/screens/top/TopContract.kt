@@ -25,7 +25,7 @@ interface TopContract {
 
         fun onReadMoreClick(url: String)
 
-        fun onFavoriteClick(sourceName: String)
+        fun onFavoriteClick(sourceId: String?)
 
         fun loadArticleImage(imageUrl: String?)
     }

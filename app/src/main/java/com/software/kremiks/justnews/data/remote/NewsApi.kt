@@ -17,6 +17,12 @@ interface NewsApi {
     @GET("top-headlines")
     fun getTopNews(
             @Query("country") country: String = "us"
+
+    ): Single<ArticlesResponse>
+
+    @GET("top-headlines")
+    fun getFavoriteNews(
+            @Query("country") vararg country: String
     ): Single<ArticlesResponse>
 
     companion object Factory {
