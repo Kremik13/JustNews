@@ -1,5 +1,6 @@
 package com.software.kremiks.justnews.screens.favorite
 
+import com.software.kremiks.justnews.data.ArticlesResponse
 import com.software.kremiks.justnews.data.remote.NewsApi
 import com.software.kremiks.justnews.screens.swiperefresh.SwipeRefreshPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,7 +13,12 @@ class FavoritePresenter @Inject constructor(
 ) : SwipeRefreshPresenter(view, model), FavoriteContract.Presenter {
 
     override fun onRefresh() {
-        onRefresh(view.getFavorites().toList())
+        val favorites = view.getFavorites().filter { !it.isEmpty() }
+        if (favorites.isEmpty()) {
+            onRefreshSuccess(ArticlesResponse(emptyList()))
+        } else {
+            onRefresh(view.getFavorites().toList())
+        }
     }
 
     private fun onRefresh(favoriteSources: List<String>) {

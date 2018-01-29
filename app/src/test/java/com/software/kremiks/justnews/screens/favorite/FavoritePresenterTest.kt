@@ -17,6 +17,7 @@ internal class FavoritePresenterTest {
     private val model: NewsApi = mock()
     private val view: FavoriteContract.View = mock()
     private val favorites = setOf("One", "Two", "Three")
+    private val noFavorites = emptySet<String>()
     private val article: Article = mock()
     private val articles = ArticlesResponse(listOf(article, article, article))
     private val presenter by lazy {
@@ -31,5 +32,14 @@ internal class FavoritePresenterTest {
         presenter.onRefresh()
 
         verify(view).setArticles(articles.articles)
+    }
+
+    @Test
+    fun onRefreshEmpty() {
+        whenever(view.getFavorites()).thenReturn(noFavorites)
+
+        presenter.onRefresh()
+
+        verify(view).showNoArticles()
     }
 }
