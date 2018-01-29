@@ -21,9 +21,9 @@ interface TopContract {
 
         fun onRefresh()
 
-        fun onReadMoreClick()
+        fun onReadMoreClick(url: String)
 
-        fun onFavouriteClicked()
+        fun onFavouriteClicked(sourceName: String)
 
         fun loadArticleImage(imageUrl: String?)
     }

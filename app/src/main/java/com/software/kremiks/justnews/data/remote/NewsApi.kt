@@ -57,7 +57,5 @@ interface NewsApi {
                             .build()
             )
         }
-
-
     }
 }

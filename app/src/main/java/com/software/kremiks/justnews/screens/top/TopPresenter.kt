@@ -12,12 +12,8 @@ class TopPresenter @Inject constructor(private val view: TopContract.View, priva
 
     private val disposables = CompositeDisposable()
 
-    override fun onCreate() {
-    }
+    override fun onStart() = onRefresh()
 
-    override fun onStart() {
-        onRefresh()
-    }
     override fun onDestroy() {
         disposables.dispose()
     }
@@ -29,8 +25,8 @@ class TopPresenter @Inject constructor(private val view: TopContract.View, priva
                 .doOnSubscribe { view.showShowRefreshing(true) }
                 .doAfterTerminate { view.showShowRefreshing(false) }
                 .subscribe(
-                        {onRefreshSuccess(it)},
-                        {onRefreshError(it)}
+                        { onRefreshSuccess(it) },
+                        { onRefreshError(it) }
                 ))
     }
 
@@ -42,7 +38,6 @@ class TopPresenter @Inject constructor(private val view: TopContract.View, priva
                 setArticles(articlesResponse.articles)
             }
         }
-
     }
 
     private fun onRefreshError(throwable: Throwable) {
@@ -50,14 +45,13 @@ class TopPresenter @Inject constructor(private val view: TopContract.View, priva
             showShowRefreshing(false)
             showToast(R.string.cannot_connect_internet)
         }
-
     }
 
-    override fun onReadMoreClick() {
+    override fun onReadMoreClick(url: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onFavouriteClicked() {
+    override fun onFavouriteClicked(sourceName: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

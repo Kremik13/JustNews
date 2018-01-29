@@ -11,8 +11,6 @@ abstract class BaseFragment<out T : BaseContract.Presenter> : DaggerFragment(), 
 
     abstract val contentViewId: Int
 
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(contentViewId, container, false)
 

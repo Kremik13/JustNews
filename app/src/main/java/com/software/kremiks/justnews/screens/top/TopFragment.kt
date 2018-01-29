@@ -23,7 +23,7 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
     override lateinit var presenter: TopContract.Presenter
     override val contentViewId = R.layout.fragment_feed
     private val adapter: TopAdapter by lazy {
-        TopAdapter(presenter::onReadMoreClick, presenter::onFavouriteClicked )
+        TopAdapter(presenter::onReadMoreClick, presenter::onFavouriteClicked)
     }
 
     override fun onCreated(savedInstanceState: Bundle?) {
@@ -56,6 +56,11 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
         feedSRL.isRefreshing = isShown
     }
 
+    override fun setArticles(news: List<Article>) {
+        adapter.articles = news
+        adapter.notifyDataSetChanged()
+    }
+
     override fun showNoArticles() {
         feedRV.visibility = View.GONE
         noArticlesLL.visibility = View.VISIBLE
@@ -63,10 +68,5 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
 
     override fun showToast(messageId: Int) {
         Toast.makeText(context, messageId, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun setArticles(news: List<Article>) {
-        adapter.articles = news
-        adapter.notifyDataSetChanged()
     }
 }

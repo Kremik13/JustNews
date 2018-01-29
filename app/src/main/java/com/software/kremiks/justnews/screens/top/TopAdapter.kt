@@ -9,17 +9,17 @@ import com.software.kremiks.justnews.extensions.inflate
 import kotlinx.android.synthetic.main.item_news_feed.view.*
 
 class TopAdapter(
-        private val onReadMoreClick: (() -> Unit),
-        private val onFavouriteClicked: (() -> Unit),
+        private val onReadMoreClick: ((String) -> Unit),
+        private val onFavouriteClicked: ((String) -> Unit),
         var articles: List<Article> = emptyList()
-        ) : RecyclerView.Adapter<TopAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<TopAdapter.ViewHolder>() {
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)
-            = holder.bind(articles[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+            holder.bind(articles[position])
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-            = ViewHolder(parent.inflate(R.layout.item_news_feed))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+            ViewHolder(parent.inflate(R.layout.item_news_feed))
 
     override fun getItemCount(): Int = articles.size
 
@@ -33,8 +33,8 @@ class TopAdapter(
                     visibility = View.VISIBLE
                 }
 
-                readMoreBtn.setOnClickListener { onReadMoreClick.invoke() }
-                favouriteSourceBtn.setOnClickListener { onFavouriteClicked.invoke() }
+                readMoreBtn.setOnClickListener { onReadMoreClick.invoke(article.url) }
+                favouriteSourceBtn.setOnClickListener { onFavouriteClicked.invoke(article.source.name) }
             }
         }
     }
