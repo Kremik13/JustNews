@@ -44,7 +44,6 @@ class NavDrawerActivity
             R.id.nav_top -> replaceFragment(TopFragment())
             R.id.nav_favorite -> replaceFragment(FavoriteFragment())
         }
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
@@ -52,5 +51,4 @@ class NavDrawerActivity
     private fun replaceFragment(fragment: Fragment) {
         replaceFragmentWithBackStack(fragment, R.id.fragmentContainer)
     }
-
 }

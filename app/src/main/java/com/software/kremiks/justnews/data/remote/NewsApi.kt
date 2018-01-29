@@ -12,14 +12,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 //TODO(""Find another news API, because newsAPI has problems with Multiple Query Parameters of Same Name)
 interface NewsApi {
 
     @GET("top-headlines")
     fun getTopNews(
             @Query("country") country: String = "us"
-
     ): Single<ArticlesResponse>
 
     @GET("top-headlines")

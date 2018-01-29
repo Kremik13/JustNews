@@ -13,6 +13,7 @@ import com.software.kremiks.justnews.R
 import com.software.kremiks.justnews.data.Article
 import com.software.kremiks.justnews.data.local.Prefs
 import com.software.kremiks.justnews.screens.BaseFragment
+import com.software.kremiks.justnews.screens.swiperefresh.SwipeRefreshAdapter
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
@@ -24,8 +25,8 @@ class TopFragment : BaseFragment<TopContract.Presenter>(), TopContract.View {
     @Inject
     lateinit var prefs: Prefs
     override val contentViewId = R.layout.fragment_feed
-    private val adapter: TopAdapter by lazy {
-        TopAdapter(prefs, presenter::onReadMoreClick, presenter::onFavoriteClick)
+    private val adapter: SwipeRefreshAdapter by lazy {
+        SwipeRefreshAdapter(prefs, presenter::onReadMoreClick, presenter::onFavoriteClick)
     }
 
     override fun onCreated(savedInstanceState: Bundle?) {

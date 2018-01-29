@@ -17,7 +17,6 @@ class SwipeRefreshAdapter(
         var articles: List<Article> = emptyList()
 ) : RecyclerView.Adapter<SwipeRefreshAdapter.ViewHolder>() {
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
             holder.bind(articles[position])
 

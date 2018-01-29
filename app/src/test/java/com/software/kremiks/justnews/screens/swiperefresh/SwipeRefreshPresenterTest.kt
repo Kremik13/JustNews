@@ -12,7 +12,6 @@ import com.software.kremiks.justnews.screens.top.TopContract
 import com.software.kremiks.justnews.screens.top.TopPresenter
 import io.reactivex.Single
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -25,7 +24,7 @@ internal class SwipeRefreshPresenterTest {
     private val view: TopContract.View = mock()
     private val text = "text"
     private val article: Article = mock()
-    private val internetError = R.string.cannot_connect_internet
+    private val internetError = R.string.internal_server_error
     private val articlesResponse: ArticlesResponse = ArticlesResponse(listOf(article, article, article))
     private val noArticles = ArticlesResponse(emptyList())
 

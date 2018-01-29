@@ -13,9 +13,9 @@ class Prefs @Inject constructor(private val context: Context) {
         private const val FAVORITES = "FAVORITES"
     }
 
-    private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)
-
     var favorites: Set<String>
         get() = prefs.getStringSet(FAVORITES, emptySet())
         set(value) = prefs.edit().putStringSet(FAVORITES, value).apply()
+
+    private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)
 }

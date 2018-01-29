@@ -7,10 +7,7 @@ import com.software.kremiks.justnews.ImmediateSchedulerExtension
 import com.software.kremiks.justnews.data.Article
 import com.software.kremiks.justnews.data.ArticlesResponse
 import com.software.kremiks.justnews.data.remote.NewsApi
-import com.software.kremiks.justnews.screens.top.TopContract
 import io.reactivex.Single
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
@@ -22,7 +19,6 @@ internal class FavoritePresenterTest {
     private val favorites = setOf("One", "Two", "Three")
     private val article: Article = mock()
     private val articles = ArticlesResponse(listOf(article, article, article))
-
     private val presenter by lazy {
         FavoritePresenter(view, model)
     }
@@ -36,5 +32,4 @@ internal class FavoritePresenterTest {
 
         verify(view).setArticles(articles.articles)
     }
-
 }

@@ -18,7 +18,7 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
 
-class FavoriteFragment : BaseFragment<FavoriteContract.Presenter>(), FavoriteContract.View{
+class FavoriteFragment : BaseFragment<FavoriteContract.Presenter>(), FavoriteContract.View {
 
     @Inject
     override lateinit var presenter: FavoriteContract.Presenter

@@ -11,5 +11,4 @@ class JustNewsApp : DaggerApplication() {
         appComponent.inject(this)
         return appComponent
     }
-
 }

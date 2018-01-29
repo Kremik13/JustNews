@@ -33,7 +33,7 @@ abstract class SwipeRefreshPresenter(
     protected fun onRefreshError() {
         view.apply {
             showShowRefreshing(false)
-            showToast(R.string.cannot_connect_internet)
+            showToast(R.string.internal_server_error)
         }
     }
 
