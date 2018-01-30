@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import com.software.kremiks.justnews.R
+import com.software.kremiks.justnews.extensions.addFragment
 import com.software.kremiks.justnews.extensions.replaceFragmentWithBackStack
 import com.software.kremiks.justnews.screens.favorite.FavoriteFragment
 import com.software.kremiks.justnews.screens.top.TopFragment
@@ -28,7 +29,7 @@ class NavDrawerActivity
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
 
-        replaceFragmentWithBackStack(TopFragment(), R.id.fragmentContainer)
+        addFragment(TopFragment(), R.id.fragmentContainer)
     }
 
     override fun onBackPressed() {
